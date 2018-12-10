@@ -12,8 +12,7 @@ import {
   List,
   ListItem,
   Picker,
-  Content,
-  Icon
+  Content
 } from "native-base";
 
 // Style
@@ -21,6 +20,9 @@ import styles from "./styles";
 
 //Store
 import CartStore from "../../store/CartStore";
+
+// Components
+import Quantity from "../Quantity";
 
 class CoffeeDetail extends Component {
   constructor(props) {
@@ -32,21 +34,7 @@ class CoffeeDetail extends Component {
   }
   static navigationOptions = ({ navigation }) => ({
     title: navigation.getParam("shop", {}).name,
-    headerRight: (
-      <Button
-        light
-        transparent
-        onPress={() => navigation.navigate("CoffeeCart")}
-      >
-        <Text>
-          <Icon
-            type="FontAwesome"
-            name="coffee"
-            style={{ color: "white", fontSize: 15 }}
-          />
-        </Text>
-      </Button>
-    )
+    headerRight: <Quantity route="CoffeeCart" />
   });
   changeDrink(value) {
     this.setState({

@@ -2,33 +2,20 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 
 // NativeBase Components
-import { List, Content, Button, Text, Icon } from "native-base";
+import { List, Content } from "native-base";
 
 // Store
 import CoffeeStore from "../../store/CoffeeStore";
 
 // Component
 import CoffeeItem from "./CoffeeItem";
+import Quantity from "../Quantity";
 
 class CoffeeList extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: "Coffee List",
     headerLeft: null,
-    headerRight: (
-      <Button
-        light
-        transparent
-        onPress={() => navigation.navigate("CoffeeCart")}
-      >
-        <Text>
-          <Icon
-            type="FontAwesome"
-            name="coffee"
-            style={{ color: "white", fontSize: 15 }}
-          />
-        </Text>
-      </Button>
-    )
+    headerRight: <Quantity route="CoffeeCart" />
   });
   render() {
     const coffeeshops = CoffeeStore.coffeeshops;
