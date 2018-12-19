@@ -6,11 +6,11 @@ class CartStore {
   }
 
   addItemToCart(item) {
-    const index = this.list.findIndex(
+    const foundItem = this.list.find(
       cartItem => cartItem.drink == item.drink && cartItem.option == item.option
     );
-    if (index >= 0) {
-      this.list[index].quantity++;
+    if (foundItem) {
+      foundItem.quantity++;
     } else {
       this.list.push(item);
     }

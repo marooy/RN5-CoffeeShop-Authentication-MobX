@@ -8,7 +8,7 @@ import { withNavigation } from "react-navigation";
 import { Text, Button, Icon } from "native-base";
 
 //Store
-import CartStore from "../../store/CartStore";
+import CartStore from "../../store/cartStore";
 
 class Quantity extends React.Component {
   navigate() {

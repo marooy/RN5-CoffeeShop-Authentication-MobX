@@ -19,7 +19,7 @@ import {
 import styles from "./styles";
 
 //Store
-import CartStore from "../../store/CartStore";
+import CartStore from "../../store/cartStore";
 
 // Components
 import Quantity from "../Quantity";
