@@ -11,34 +11,32 @@ import styles from "./styles";
 import { withNavigation } from "react-navigation";
 
 class CoffeeItem extends Component {
-  handlePress() {
+  handlePress = () => {
     this.props.navigation.navigate("CoffeeDetail", {
       shop: this.props.coffeeShop
     });
-  }
+  };
+
   render() {
+    const { coffeeShop } = this.props;
     return (
       <ImageBackground
-        source={{ uri: this.props.coffeeShop.background }}
+        source={{ uri: coffeeShop.background }}
         style={styles.background}
       >
         <View style={styles.overlay} />
-        <ListItem
-          button
-          onPress={() => this.handlePress(this.props.coffeeShop)}
-          style={styles.listitem}
-        >
+        <ListItem button onPress={this.handlePress} style={styles.listitem}>
           <Card style={styles.transparent}>
             <CardItem style={styles.transparent}>
               <Left>
                 <Thumbnail
                   bordered
-                  source={{ uri: this.props.coffeeShop.img }}
+                  source={{ uri: coffeeShop.img }}
                   style={styles.thumbnail}
                 />
-                <Text style={styles.text}>{this.props.coffeeShop.name}</Text>
+                <Text style={styles.text}>{coffeeShop.name}</Text>
                 <Text note style={styles.text}>
-                  {this.props.coffeeShop.distance}
+                  {coffeeShop.distance}
                 </Text>
               </Left>
             </CardItem>

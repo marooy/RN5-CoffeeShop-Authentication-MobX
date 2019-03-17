@@ -5,29 +5,29 @@ import { observer } from "mobx-react";
 import { List, Content } from "native-base";
 
 // Store
-import CoffeeStore from "../../store/coffeeStore";
+import coffeeStore from "../../store/coffeeStore";
 
 // Component
 import CoffeeItem from "./CoffeeItem";
-import Quantity from "../Quantity";
+import CartButton from "../CartButton";
 
 class CoffeeList extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: "Coffee List",
     headerLeft: null,
-    headerRight: <Quantity route="CoffeeCart" />
+    headerRight: <CartButton />
   });
   render() {
-    const coffeeshops = CoffeeStore.coffeeshops;
-    let ListItems;
+    const coffeeshops = coffeeStore.coffeeshops;
+    let shops;
     if (coffeeshops) {
-      ListItems = coffeeshops.map(coffeeShop => (
+      shops = coffeeshops.map(coffeeShop => (
         <CoffeeItem coffeeShop={coffeeShop} key={coffeeShop.id} />
       ));
     }
     return (
       <Content>
-        <List>{ListItems}</List>
+        <List>{shops}</List>
       </Content>
     );
   }

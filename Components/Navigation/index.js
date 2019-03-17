@@ -1,5 +1,5 @@
 import React from "react";
-import { createStackNavigator } from "react-navigation";
+import { createStackNavigator, createAppContainer } from "react-navigation";
 
 // Components
 import CoffeeList from "../CoffeeList";
@@ -7,7 +7,7 @@ import CoffeeDetail from "../CoffeeDetail";
 import CoffeeCart from "../CoffeeCart";
 import Login from "../Login";
 
-export default createStackNavigator(
+const StackNav = createStackNavigator(
   {
     CoffeeList: CoffeeList,
     CoffeeDetail: CoffeeDetail,
@@ -16,10 +16,10 @@ export default createStackNavigator(
   },
   {
     initialRouteName: "Login",
-    navigationOptions: {
+    defaultNavigationOptions: {
       headerTintColor: "white",
       headerStyle: {
-        backgroundColor: "transparent"
+        backgroundColor: "rgb(8,80,129)"
       },
       headerTextStyle: {
         fontWeight: "bold"
@@ -30,3 +30,6 @@ export default createStackNavigator(
     }
   }
 );
+
+const AppContainer = createAppContainer(StackNav);
+export default AppContainer;
