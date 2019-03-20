@@ -18,8 +18,10 @@ class CartStore {
     this.items = this.items.filter(cartItem => cartItem !== item);
   }
 
-  checkoutCart() {
+  checkoutCart(navigation) {
     this.items = [];
+    alert("Thank You For Shopping");
+    navigation.navigate("CoffeeList");
   }
   get quantity() {
     let quantity = 0;

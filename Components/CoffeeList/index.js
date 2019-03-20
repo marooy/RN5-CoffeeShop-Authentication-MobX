@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
-
+import { withNavigation } from "react-navigation";
 // NativeBase Components
-import { List, Content } from "native-base";
+import { List, Content, Footer, Text, Container, Button } from "native-base";
 
 // Store
 import coffeeStore from "../../store/coffeeStore";
+import authStore from "../../store/authStore";
 
 // Component
 import CoffeeItem from "./CoffeeItem";
@@ -19,6 +20,7 @@ class CoffeeList extends Component {
   });
   render() {
     const coffeeshops = coffeeStore.coffeeshops;
+    const navigation = this.props.navigation;
     let shops;
     if (coffeeshops) {
       shops = coffeeshops.map(coffeeShop => (
@@ -26,11 +28,25 @@ class CoffeeList extends Component {
       ));
     }
     return (
-      <Content>
-        <List>{shops}</List>
-      </Content>
+      <Container>
+        <Content>
+          <List>{shops}</List>
+        </Content>
+        <Footer>
+          {authStore.user && (
+            <Button
+              style={{ width: "100%" }}
+              block
+              dark
+              onPress={() => authStore.logout(navigation)}
+            >
+              <Text>logout</Text>
+            </Button>
+          )}
+        </Footer>
+      </Container>
     );
   }
 }
 
-export default observer(CoffeeList);
+export default withNavigation(observer(CoffeeList));

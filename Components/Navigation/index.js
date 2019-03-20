@@ -7,15 +7,18 @@ import CoffeeDetail from "../CoffeeDetail";
 import CoffeeCart from "../CoffeeCart";
 import Login from "../Login";
 
+import CheckUser from "./CheckUser";
+
 const StackNav = createStackNavigator(
   {
     CoffeeList: CoffeeList,
     CoffeeDetail: CoffeeDetail,
     CoffeeCart: CoffeeCart,
-    Login: Login
+    Login: Login,
+    CheckUser: CheckUser
   },
   {
-    initialRouteName: "Login",
+    initialRouteName: "CheckUser",
     defaultNavigationOptions: {
       headerTintColor: "white",
       headerStyle: {

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import authStore from "../../store/authStore";
 
 // NativeBase Components
 import {
@@ -16,10 +17,34 @@ import {
 } from "native-base";
 
 class Login extends Component {
+  state = {
+    username: "",
+    password: ""
+  };
   static navigationOptions = {
     title: "Login"
   };
+
+  handleChangeUsername = value => {
+    this.setState({ username: value });
+  };
+  handleChangePassword = value => {
+    this.setState({ password: value });
+  };
+
+  handleLogin = () => {
+    const navigation = this.props.navigation;
+    authStore.loginUser(this.state, navigation);
+  };
+
+  handleSignup = () => {
+    const navigation = this.props.navigation;
+    authStore.registerUser(this.state, navigation);
+  };
   render() {
+    // if (authStore.user) {
+    //   this.props.navigation.navigate("CoffeeList");
+    // }
     return (
       <Content>
         <Header transparent />
@@ -38,7 +63,12 @@ class Login extends Component {
                     marginBottom: 10
                   }}
                 >
-                  <Input autoCorrect={false} autoCapitalize="none" />
+                  <Input
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    value={this.state.username}
+                    onChangeText={this.handleChangeUsername}
+                  />
                 </Item>
                 <Body>
                   <Label style={{ color: "white" }}>Password</Label>
@@ -51,23 +81,17 @@ class Login extends Component {
                     autoCorrect={false}
                     secureTextEntry
                     autoCapitalize="none"
+                    value={this.state.password}
+                    onChangeText={this.handleChangePassword}
                   />
                 </Item>
               </Form>
             </Body>
           </ListItem>
-          <Button
-            full
-            success
-            onPress={() => this.props.navigation.replace("CoffeeList")}
-          >
+          <Button full success onPress={this.handleLogin}>
             <Text>Login</Text>
           </Button>
-          <Button
-            full
-            warning
-            onPress={() => this.props.navigation.replace("CoffeeList")}
-          >
+          <Button full warning onPress={this.handleSignup}>
             <Text>Register</Text>
           </Button>
         </List>
